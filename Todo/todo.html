@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head> <!--//html에서 개발하는 방식-->
+<body>
+<div class = "wrapper">
+    <div class = "inputDiv">
+        <input type = "text" id = "inputText" value = "AAAAA">
+        <button id = "btn"> Save </button>
+    </div>
+    <div class="listDiv">
+        <ul id="listUL">
+        </ul>
+    </div>
+</div>
+<script>
+    var idx = 0;
+    var btnObj = document.querySelector("#btn");
+    var inputTextObj = document.querySelector("#inputText");
+    var listULObj = document.querySelector("#listUL");
+    console.log(btnObj);
+    btnObj.addEventListener("click",function () {
+
+        console.log(inputTextObj.value);
+        var liObj = document.createElement("li");
+        var content =  document.createTextNode(idx++ + ":"+ inputTextObj.value);
+        var liObj2 = document.createElement("input");
+        liObj2.type="checkbox";
+        //선택
+        liObj.addEventListener("click",function () {
+            this.style="color:red";
+            console.log(this.innerText);
+        });
+
+        liObj.addEventListener("wheel",function () {
+            this.modifiers("wheel")
+        });
+        //삭제
+        liObj.addEventListener("dblclick",function () {
+            this.remove();
+            console.log(this.innerText);
+        });
+
+        liObj.appendChild(content);
+        liObj.appendChild(liObj2);
+        listULObj.appendChild(liObj);
+    });
+</script>
+</body>
+</html>
