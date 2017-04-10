@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    span {
+        background-size: auto;
+        background-color:hotpink;
+        border-radius:5px;
+
+    }
+    .inputDiv{
+        background-color: cornsilk;
+    }
+    .listDiv ul{
+        background-color: dodgerblue;
+    }s
+
+</style>
+
+
+<div class="inputDiv">
+    <input type="text" id="inputText">
+    <button id="btn">Save</button>
+</div>
+<div class="listDiv">
+    <ul id="listUL">
+    </ul>
+</div>
+<script>
+
+    var inputObj = document.querySelector("#inputText");
+    var btnObj = document.querySelector("#btn");
+    var listULObj = document.querySelector("#listUL");
+
+    listULObj.addEventListener("click",function(event){
+        var target = event.srcElement|| event.target;
+        console.dir(target);
+        if(target.tagName == 'SPAN'){
+            console.log('try delete');
+            console.log( target.parentNode);
+            target.parentNode.remove();
+
+        }else if(target.tagName =='LI'){
+            target.firstElementChild.innerHTML+="<ul><li><input type='text'><button>reply</button></ul></li>";
+
+        }else if(target.tagName =='BUTTON'){
+            var targetLi = target.parentNode;
+            targetLi.innerHTML = target.parentNode.firstChild.value +'<span>  x  </span>';
+        }
+    });
+
+    btnObj.addEventListener("click",function(event){
+        var msg = inputObj.value;
+        console.log(msg);
+        inputObj.value =" ";
+        listULObj.innerHTML += "<li>" +msg+" <span>  x  </span></li>";
+    },false);
+
+</script>
+</body>
+</html>
