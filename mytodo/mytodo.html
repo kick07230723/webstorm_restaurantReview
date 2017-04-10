@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<style>
+    span{
+        padding: 10px;
+        width: 20px;
+        background-color: crimson;
+        border-radius: 15px;
+
+    }
+
+</style>
+
+    <div class="inputDiv">
+    <input type="text" id="inputText">
+        <button id="btn">save</button>
+
+    </div>
+
+    <div class="listDiv">
+        <ul id="listUL">
+
+        </ul>
+
+    </div>
+
+<script>
+    var inputObj = document.querySelector("#inputText")
+    var btnObj = document.querySelector("#btn")
+    var listULObj = document.querySelector("#listUL")
+
+    listULObj.addEventListener("click", function (event) {
+
+        var target = event.srcElement
+        if(target.tagName =="SPAN"){
+            console.log("delete")
+            var liObj = target.parentNode
+            listULObj.removeChild(liObj)
+
+        }else if (target.tagName =="LI"){
+
+            console.log("modify")
+            var content = target.innerText
+            console.log(content)
+
+            target.innerHTML="<input type='text' value='"+this.value+"'><button>Modify</button>"
+        }else if(target.tagName =="BUTTON"){
+
+            target.innerHTML=target.parentNode.value
+
+        }
+
+    })
+
+    btnObj.addEventListener("click", function (event) {
+        var msg = inputObj.value;
+        console.log(msg)
+        inputObj.value = " "
+        listULObj.innerHTML+="<li>"+msg +"<span>x</span></li>"
+
+
+    },false)
+
+
+</script>
+
+
+</body>
+</html>
