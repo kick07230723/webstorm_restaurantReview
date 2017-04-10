@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .outer1{
+        width:100%;
+        height:500px;
+        background-color: aqua;
+    }
+
+    .inner1{
+        width:80%;
+        height:400px;
+        margin: 50px;
+        background-color:crimson;
+
+
+    }
+
+    .inner2{
+        width:60%;
+        height:300px;
+        margin: 50px;
+
+        background-color:yellow;
+
+
+    }
+
+
+</style>
+
+
+
+
+<div class="outer1" id="outer1">
+    aaaaaa
+    <div class="inner1" id="inner1">
+        bbbbbb
+        <div class="inner2" id="inner2">
+            cccccc
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    document.querySelector("#outer1").addEventListener("click",function () {
+
+        alert(this.innerHTML)
+
+    })
+    document.querySelector("#inner1").addEventListener("click",function () {
+
+        alert(this.innerHTML)
+
+    })
+    document.querySelector("#inner2").addEventListener("click",function (event) {
+
+        event.stopPropagation()
+
+        alert(this.innerHTML)
+
+    })
+
+</script>
+
+</body>
+</html>
