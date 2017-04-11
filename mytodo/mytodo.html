@@ -6,71 +6,76 @@
 </head>
 <body>
 
-
 <style>
-    span{
+    span {
         padding: 10px;
-        width: 20px;
-        background-color: crimson;
+        width: 10px;
+        align: center;
+        background-color: aquamarine;
         border-radius: 15px;
-
     }
 
 </style>
 
-    <div class="inputDiv">
+
+<div class="inputDiv">
     <input type="text" id="inputText">
-        <button id="btn">save</button>
-
-    </div>
-
+    <button id="btn">Save</button>
     <div class="listDiv">
+
         <ul id="listUL">
 
         </ul>
 
     </div>
 
+</div>
+
 <script>
+
     var inputObj = document.querySelector("#inputText")
     var btnObj = document.querySelector("#btn")
     var listULObj = document.querySelector("#listUL")
+    listULObj.addEventListener("click",function (event) {
+//        console.log(event.srcElement)
 
-    listULObj.addEventListener("click", function (event) {
+        var target = event.srcElement;
+        console.dir(target)
 
-        var target = event.srcElement
         if(target.tagName =="SPAN"){
-            console.log("delete")
-            var liObj = target.parentNode
-            listULObj.removeChild(liObj)
+            console.log("try delete")
+            var liObj = target.parentNode;
+            console.log(liObj)
+            listULObj.removeChild(liObj);
+        }else if(target.tagName == 'LI'){
 
-        }else if (target.tagName =="LI"){
-
-            console.log("modify")
-            var content = target.innerText
+            console.log("try modify")
+            var content = target.innerText;
             console.log(content)
+            target.innerHTML="<input type='text' value='"+content+"'><button>modify</button>"
 
-            target.innerHTML="<input type='text' value='"+this.value+"'><button>Modify</button>"
-        }else if(target.tagName =="BUTTON"){
-
-            target.innerHTML=target.parentNode.value
-
+        }else if(target.tagName =='BUTTON'){
+            var targetLi = target.parentNode
+            targetLi.innerHTML = target.parentNode.firstChild.value +"<span>x</span>";
         }
+    },false)
 
-    })
+    btnObj.addEventListener("click",function (event) {
 
-    btnObj.addEventListener("click", function (event) {
-        var msg = inputObj.value;
+        var msg = inputObj.value
         console.log(msg)
-        inputObj.value = " "
-        listULObj.innerHTML+="<li>"+msg +"<span>x</span></li>"
+        inputObj.value ="";
+
+        listULObj.innerHTML += "<li>" +msg +"<span> x </span></li>"
 
 
     },false)
 
 
-</script>
 
+
+
+</script>
 
 </body>
 </html>

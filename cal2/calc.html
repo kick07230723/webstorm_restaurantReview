@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="number" id="input">
+<button id="btn">ADD</button>
+<div>
+    <h2 id="output"></h2>
+
+
+</div>
+
+<script src="calculator2.js"></script>
+
+<script>
+
+    var calculator = new Calculator();
+
+    document.querySelector("#btn").addEventListener("click", function (event) {
+
+        var valueStr = document.querySelector("#input").value
+        console.log(typeof value);
+        console.log(value)//왜필요할까? 문자인지 숫자인지 확인하려고 - 숫자지만 문자열로 찍힌다.
+        var value = parseFloat(valueStr);
+
+        var result = calculator.add(value);
+        console.log("result : " + result)
+
+
+    }, false);
+
+
+</script>
+
+
+</body>
+</html>
