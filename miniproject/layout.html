@@ -78,8 +78,6 @@
 
     <h3 style="font-size: 10px">
 
-        식당번호<input class="sno" type="text"></br>
-        식당<input class="sname" type="text"></br>
         이름<input class="userid" type="text"></br>
         리뷰<input class="review" type="text"></br>
         평점<input class="score"type="text"></br>
@@ -179,6 +177,7 @@
 
 
     var markers = new Array();
+    var currentstore = new Array();
     var storeManager = (function (map) {
         function addStore(store) {
             var markerPosition  = new daum.maps.LatLng(store.lat, store.lng);
@@ -198,6 +197,7 @@
             daum.maps.event.addListener(marker, 'mouseover', function() {
                 // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
                 infowindow.open(map, marker);
+                currentstore.push(store)
             });
             // 마커에 마우스아웃 이벤트를 등록합니다
             daum.maps.event.addListener(marker, 'mouseout', function() {
@@ -234,8 +234,10 @@
 
 
         $(".btnRegi").on("click", function (e) {
+
+
             $.post("http://192.168.0.16:8081/postTest",
-                {userid: $('.userid').val(), review: $('.review').val(), score: $('.score').val(),sno: $('.sno').val(),sname: $('.sname').val()},
+                {userid: $('.userid').val(), review: $('.review').val(), score: $('.score').val(),sno: currentstore[0].sno ,sname: currentstore[0].sname},
                 function (result) {
                     console.log(result)
                 }, "text");
