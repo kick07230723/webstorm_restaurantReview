@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>hi</h1>
+
+<div>
+    <input id="in1" >
+    <input id="in2" >
+    <input id="in3" >
+    <button id="btn">go</button>
+</div>
+
+
+<script>
+var d1 = document.querySelector("#in1")
+var d2 = document.querySelector("#in2")
+var d3 = document.querySelector("#in3")
+var btnO = document.querySelector("#btn")
+console.log("1111")
+
+btnO.addEventListener('click',function () {
+    console.log("ok?")
+    var d4 = "d1="+d1.value+","+d2.value+","+d3.value
+    console.log(d4)
+})
+</script>
+
+<iframe src="localhost:8080/get/get?d4=1234" height="200" width="300"></iframe>
+
+</body>
+</html>
