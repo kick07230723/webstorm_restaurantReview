@@ -1,0 +1,217 @@
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+body{
+	width:100%;
+	height:100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.header {
+	position: absolute;
+	top:0px;
+	left:0px;	
+	width:100%;
+	height: 45px;
+	background: -webkit-linear-gradient(top, rgba(254,187,187,1) 16%,rgba(254,144,144,1) 68%,rgba(255,92,92,1) 100%);
+}
+
+.header>.title{
+	position: absolute;
+	overflow: hidden;
+	left: 50%;
+	top: 10px;
+	line-height: 1em;
+	margin: 1px 0 0 -75px;
+	height: 40px;
+	font-size: 20px;
+	width: 150px;
+	font-weight: bold;
+	text-shadow: rgba(0,0,0,1) 0 -1px 1px;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #fff;	
+}
+
+.button{
+	position: absolute;
+	overflow: hidden;
+	top: 8px;
+	right: 0.5px;
+	margin: 0;
+	border-width: 0 5px;
+	padding: 0 5px;
+	width: auto;
+	height: 38px;
+	line-height: 30px;
+	font-family: inherit;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px -1px 0;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	white-space: nowrap;
+	background: -webkit-linear-gradient(top, rgba(255,183,107,1) 12%,rgba(255,192,130,1) 32%,rgba(255,167,61,1) 65%,rgba(255,124,0,1) 100%,rgba(255,124,0,1) 100%,rgba(255,127,4,1) 100%,rgba(255,124,0,1) 100%);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;	
+	margin-top:-7px;
+	font-size: 10px;
+	padding-top: 5px;
+		
+}
+
+
+.menu {
+	left: 0px;
+	width:60px;
+	height:38px;
+/*	text-align: center;
+	margin-top:-7px;
+	background: url(../img/menu.png);
+	background-color: #3B5998;*/	
+	box-shadow: rgba(0,0,0,1) 1px 0px 1px ,#F2F4F8;
+	font-size: 15px;
+	padding-top: 5px;
+	padding-left: 15px;
+}
+
+
+.setting {
+	box-shadow: rgba(0,0,0,1) -1px 0px 1px ,#F2F4F8;
+}
+
+
+.section{
+	width:100%;
+	height: auto;		
+	position: absolute;
+	top:46px;
+	left:0px;
+	bottom: 1px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+#scroller{
+	width:100%;
+	position:absolute; z-index:1;	
+}
+
+
+.list{
+	list-style: none;
+}
+
+.list li{
+	height:50px;
+	border-bottom: 1px solid #3B5998;
+}
+
+
+
+.leftMenu {
+	display:none;
+	position: absolute;
+	width:100px;
+	padding: 15px 5px;
+	background: -webkit-linear-gradient(top, rgba(239,197,202,1) 0%,rgba(186,39,55,1) 0%,rgba(241,142,153,1) 95%,rgba(241,142,153,1) 95%,rgba(210,75,90,1) 100%);
+	border-radius: 5px;	
+	height: auto;		
+	top:46px;
+	left:0px;
+	bottom: 0px;
+	overflow-x: hidden;
+	overflow-y: auto;	
+}
+
+.leftMenuList {
+	position: relative;
+	border-radius: 5px;
+	width:100%;
+	height:100%;
+	background-size: 100%;	
+}
+
+/*.leftMenuList > button {*/
+	/*height:40px;*/
+	/*background-color: #FF8000;*/
+	/*display: block;	*/
+/*}*/
+
+.leftMenuList > button {
+	display: block;
+	color:#FFFFFF;
+	text-decoration: none;
+	padding-left: 15px;
+	
+}
+
+
+.rightMenu{
+	display:none;
+	position: absolute;
+	top:55px;
+	right:0px;
+	width:200px;
+	padding: 10px;
+	background: -webkit-linear-gradient(top, rgba(255,183,107,1) 12%,rgba(255,192,130,1) 32%,rgba(255,167,61,1) 65%,rgba(255,124,0,1) 100%,rgba(255,124,0,1) 100%,rgba(255,127,4,1) 100%,rgba(255,124,0,1) 100%);
+	border-radius: 5px;
+	z-index: 200;		
+}
+
+.rightMenuList {
+	border-radius: 5px;
+	width:100%;
+	height:100%;
+	background-size: 100%;
+	padding-top:10px;	
+	position: relative;	
+	opacity: 0.8;
+}
+
+
+.rightMenuList > li {
+	height:40px;
+	background-color: #3B5998;
+	display: block;
+}
+
+.rightMenuList > li > a {
+	height: 100%;
+	display: block;
+	color:#FFFFFF;
+	text-decoration: none;
+	padding:15px 10px ;
+	margin: 1px;
+}
+
+.rightMenuBubble{
+	width:100px;
+	height:100px;
+	margin-left: 150px;
+	margin-top: -50px;
+}
+
+
+
+@media only screen and (max-width: 480px) {
+
+	.container {
+		width: 100%;
+		background-color: #80FFC0;
+	}
+}
+
+
+

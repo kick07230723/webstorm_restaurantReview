@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>맛집을 찾아라</title>
+    <meta name="description" content="" />
+    <meta name="author" content="THINKER" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0, minimum-scale:1.0" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="style/layout04.css"/>
+</head>
+
+<body>
+
+<style>
+
+    .postit {
+        opacity: 0.7;
+        content:"";
+        z-index: 3;
+        line-height: 1;
+        text-align:center;
+        width: 175px;
+        margin: 25px;
+        min-height:150px;
+        max-height:230px;
+        /*padding-top:px;*/
+        position:absolute;
+        left: 150px;
+        top: 100px;
+        border:1px solid #E8E8E8;
+        /*border-top:10px solid #fdfd86;*/
+        font-family:'Reenie Beanie';
+        font-size:22px;
+        border-bottom-right-radius: 60px 5px;
+        background: #ffff88; /* Old browsers */
+        background: -moz-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right bottom, color-stop(81%,#ffff88), color-stop(82%,#ffff88), color-stop(82%,#ffff88), color-stop(100%,#ffffc6)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* IE10+ */
+        background: linear-gradient(135deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffffc6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        display: none;
+    }
+.postit input[type="text"],textarea{
+    background: #ffff88; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(81%,#ffff88), color-stop(82%,#ffff88), color-stop(82%,#ffff88), color-stop(100%,#ffffc6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* IE10+ */
+    background: linear-gradient(135deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* W3C */
+    width: 120px;
+    padding: 1px;
+    margin-bottom: 5px;}
+
+.btncan {
+    font-size: 20px;
+    position: absolute;
+    left :90%;
+
+}
+
+
+
+
+
+</style>
+
+<div class="postit">
+    <button class="btncan">x</button></br>
+    <label>리뷰작성하기</label></br></br>
+
+    <h3 style="font-size: 10px">
+
+        식당번호<input class="sno" type="text"></br>
+        식당<input class="sname" type="text"></br>
+        이름<input class="userid" type="text"></br>
+        리뷰<input class="review" type="text"></br>
+        평점<input class="score"type="text"></br>
+
+
+    </h3>
+    <button class="btnRegi" style="font-size: 10px"><a ref="#">등록</a></button>
+
+
+
+
+</div>
+
+<div class="header">
+    <a id="menu" class="button menu" href="#menu">MENU</a>
+    <h1 class="title">맛집을 찾아라</h1>
+    <a id="settingMenu" class="button setting" href="#settings">Settings</a>
+</div>
+
+<div class='section' id="wrapper">
+    <div id="scroller">
+       <!--지도넣기 -->
+        <div id="map" style="width:100%;height:500px;"></div>
+    </div>
+</div>
+
+
+<div class="leftMenu">
+    <ul class="leftMenuList" id="leftMenuList">
+        <button value="http://192.168.0.16:8081/store">한식</button>
+        <button value="http://192.168.0.218:8080/store">중식</button>
+        <button value="http://192.168.0.221:8080/ajaxEx/store" >일식</button>
+        <button value="http://192.168.0.9:8080/ajaxEx/store">패스트푸드</button>
+        <button value="http://192.168.0.22:8080/AjaxEx/store">분식</button>
+
+    </ul>
+</div>
+
+<div class="rightMenu">
+    <ul class="rightMenuList">
+        <li><a href="#">Setting1</a></li>
+        <li><a href="#">Setting2</a></li>
+        <li><a href="#">Setting3</a></li>
+        <li><a href="#">Setting4</a></li>
+        <li><a href="#">Setting5</a></li>
+        <li><a href="#">Setting6</a></li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=175962b9a13ff23b6ba95789998c261c"></script>
+
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new daum.maps.LatLng(37.494684, 127.027574), // 지도의 중심좌표
+            level: 4 // 지도의 확대 레벨
+        };
+
+    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+    var map = new daum.maps.Map(mapContainer, mapOption);
+</script>
+
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/iscroll.js"></script>
+<script>
+
+
+    $(document).ready(function() {
+        //메뉴누르면 지도 밀리는 부분
+        window.scrollTo(0,0);
+
+        var scroller = new iScroll($('.section').get(0));
+        //메뉴
+        $('#menu').toggle(
+            function() {
+                $(".section").animate({ marginLeft: "+=110px"}, 100 );
+                $(".leftMenu").show(100);
+
+            },
+            function(){
+                $(".section").animate({ marginLeft: "-=110px"}, 100 );
+                $(".leftMenu").hide(100);
+            }
+        );
+        //세팅메뉴
+        $('#settingMenu').toggle(
+            function(e) {
+                e.preventDefault();
+                $(".rightMenu").show();
+            },
+            function(e){
+                e.preventDefault();
+                $(".rightMenu").hide();
+            }
+        );
+
+
+
+    var markers = new Array();
+    var storeManager = (function (map) {
+        function addStore(store) {
+            var markerPosition  = new daum.maps.LatLng(store.lat, store.lng);
+            var marker = new daum.maps.Marker({
+                position: markerPosition
+            });
+            marker.setMap(map);
+            markers.push(marker);
+            console.log(marker);
+            var iwContent = "<div style='padding:5px;'>"+store.sname+"</div>";
+            // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            // 인포윈도우를 생성합니다
+            var infowindow = new daum.maps.InfoWindow({
+                content : iwContent
+            });
+            // 마커에 마우스오버 이벤트를 등록합니다
+            daum.maps.event.addListener(marker, 'mouseover', function() {
+                // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+                infowindow.open(map, marker);
+            });
+            // 마커에 마우스아웃 이벤트를 등록합니다
+            daum.maps.event.addListener(marker, 'mouseout', function() {
+                // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+                infowindow.close();
+            });
+
+            daum.maps.event.addListener(marker, 'click', function() {
+                // 마커에 클릭 이벤트가 발생하면 인포윈도우를 마커 위에 표시합니다
+                $('.postit').show(1000);
+            });
+        }
+        return {addStore:addStore};
+    })(map);
+    var leftMenuList = document.querySelector("#leftMenuList");
+    leftMenuList.addEventListener('click', function (event) {
+        console.log("아아아아 버튼들어와....")
+        var target = event.srcElement;
+        for(var i in markers){
+            markers[i].setMap(null);
+        }
+
+        (function () {
+            console.log("들어오냐?")
+            console.dir(target);
+            $.getJSON(target.value,function (arr) {
+                for(var i=0, len =arr.length; len>i;i++ ){
+                    storeManager.addStore(arr[i]);
+                }
+            })
+        })()
+
+    })
+
+
+        $(".btnRegi").on("click", function (e) {
+            $.post("http://192.168.0.16:8081/postTest",
+                {userid: $('.userid').val(), review: $('.review').val(), score: $('.score').val(),sno: $('.sno').val(),sname: $('.sname').val()},
+                function (result) {
+                    console.log(result)
+                }, "text");
+            $(".userid").val("");
+            $(".review").val("");
+            $(".score").val("");
+            $(".postit").hide(200);
+
+        });
+
+        $(".btncan").on("click", function (e) {
+            $(".userid").val("");
+            $(".review").val("");
+            $(".score").val("");
+            $(".postit").hide(200);
+        });
+
+
+
+
+
+    });
+</script>
+
+
+
+</body>
+</html>
