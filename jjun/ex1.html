@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Daum 지도 시작하기</title>
+</head>
+<body>
+<div id="map" style="width:100%;height:600px;"></div>
+<div id="btn">
+    <button>한식</button>
+    <button >중식</button>
+    <button >일식</button>
+    <button >패스트푸드</button>
+    <button >분식</button>
+</div>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=dbd133f743a67fe984f6254c1a527468"></script>
+<script>
+    var container = document.getElementById('map');
+    var options = {
+        center: new daum.maps.LatLng(37.494766, 127.028410),
+        level: 4
+    };
+    var map = new daum.maps.Map(container, options);
+</script>
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script>
+    var markers = new Array();
+    var storeManager = (function (map) {
+        function addStore(store) {
+            var markerPosition  = new daum.maps.LatLng(store.lat, store.lng);
+            var marker = new daum.maps.Marker({
+                position: markerPosition
+            });
+            marker.setMap(map);
+            markers.push(marker);
+
+            console.log(marker);
+            var iwContent = "<div style='padding:5px;'>"+store.sname+"</div>"; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+// 인포윈도우를 생성합니다
+            var infowindow = new daum.maps.InfoWindow({
+                content : iwContent
+            });
+// 마커에 마우스오버 이벤트를 등록합니다
+            daum.maps.event.addListener(marker, 'mouseover', function() {
+                // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+                infowindow.open(map, marker);
+            });
+// 마커에 마우스아웃 이벤트를 등록합니다
+            daum.maps.event.addListener(marker, 'mouseout', function() {
+                // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+                infowindow.close();
+            });
+        }
+        return {addStore:addStore};
+    })(map);//맵을 실행한다.
+    var btnObj = document.querySelector("#btn");
+    var srt2Obj = document.querySelector("#srt2");
+    btnObj.addEventListener('click', function (event) {
+        var target = event.srcElement;
+        console.dir(target);
+        var kf = btnObj.childNodes[1];
+
+        for(var i in markers){
+            markers[i].setMap(null);
+        }
+        switch (target.innerText){
+            case "한식":
+                $.getJSON("http://192.168.0.16:8081/store",function (arr) {
+                    console.log(arr); //동작안한다 왜? 보안의 문제가 있기떄문에
+                    for(var i=0, len =arr.length; len>i;i++ ){
+                        storeManager.addStore(arr[i]);
+                    }
+                })//데이터,callback 함수(JSON배열로 받는다
+                break;
+            case "중식":
+                $.getJSON("http://192.168.0.218:8080/store",function (arr) {
+                    console.log(arr); //동작안한다 왜? 보안의 문제가 있기떄문에
+                    for(var i=0, len =arr.length; len>i;i++ ){
+                        storeManager.addStore(arr[i]);
+                    }
+                })//데이터,callback 함수(JSON배열로 받는다
+                break;
+            case "일식":
+                $.getJSON("http://192.168.0.221:8080/ajaxEx/store",function (arr) {
+                    console.log(arr); //동작안한다 왜? 보안의 문제가 있기떄문에
+                    for(var i=0, len =arr.length; len>i;i++ ){
+                        storeManager.addStore(arr[i]);
+                    }
+                })//데이터,callback 함수(JSON배열로 받는다
+                break;
+            case "패스트푸드":
+                $.getJSON("http://192.168.0.9:8080/ajaxEx/store",function (arr) {
+                    console.log(arr); //동작안한다 왜? 보안의 문제가 있기떄문에
+                    for(var i=0, len =arr.length; len>i;i++ ){
+                        storeManager.addStore(arr[i]);
+                    }
+                })//데이터,callback 함수(JSON배열로 받는다
+                break;
+            case "분식":
+                $.getJSON("http://192.168.0.22:8080/AjaxEx/store",function (arr) {
+                    console.log(arr); //동작안한다 왜? 보안의 문제가 있기떄문에
+                    for(var i=0, len =arr.length; len>i;i++ ){
+                        storeManager.addStore(arr[i]);
+                    }
+                })//데이터,callback 함수(JSON배열로 받는다
+                break;
+        }
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>계산을 합시다</title>
+</head>
+<style>
+    .listDiv{
+        display: none;
+        /*position: absolute;*/
+        /*left:50%;*/
+        /*top: 50%;*/
+        /*height: 200px;*/
+        /*width: 300px;*/
+        /*margin-left: -150px;*/
+        /*margin-top: -100px;*/
+        background-color: hotpink;
+        border: 1px crimson;
+    }
+
+
+    .del{
+        margin : 5px;
+        background-color: darkseagreen;
+        padding: 5px;
+    }
+    li{
+        height: 30px;
+        boarder: 1px brown;
+        list-style: circle;
+    }
+</style>
+
+<body>
+<!--<button id="btn1">btn1</button>-->
+<!--<button id="btn2">btn2</button>-->
+
+<div>
+    <input type="text" name="todo">
+    <button id="btn">Save</button>
+</div>
+
+<div class="listDiv">
+
+    <ul class="todoUL">
+
+
+    </ul>
+
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+
+
+<script>
+
+    var $input = $( "input[name='todo']" );
+    var $todoUL = $(".todoUL");
+    var $btn = $("#btn");
+
+    $btn.on("click", function (e) {
+
+        var content = $input.val();
+        $input.val("");
+        console.log(content);
+        $todoUL.append("<li>"+content+"<span class='del'>x</span></li>")
+
+    });
+
+    $todoUL.on("click","li .del",function (e) { //"" 아직은 dom에 생성되지 않은 것이지만 이벤트가 걸리면받아먹을거다.(하위요소에 걸어주는것이다.)
+        console.log(this);
+        $(this).closest("li").remove();
+
+
+
+
+
+    });
+
+    $todoUL.on("click","li", function (e) {
+
+        e.stopPropagation();
+        var $that = $(this);//this=리스트 =$that
+        var content = $that.children().remove().end().text();
+        $that.html("<input class='inputClass' type='text' value='"+content+"'><button>mod</button>");
+
+        $todoUL.on("click","input", function (e) {
+            e.stopPropagation();
+            console.log("디스"+$that.html())
+            var $inputObj1=$(this)
+            var $inputValue=$(this).val()//$(this).val()= 수정한 값
+                                            // this=<input, value=원래값>, $that=[li]
+            $todoUL.on("click","button", function (e) {
+                e.stopPropagation();
+
+                console.log("!!???!!"+$("#inputClass").val())
+                console.log("버튼눌렀을떄"+ $(this))//this=mod버튼 inputObj1.val()=지금 인풋창의 값
+                $(this).parent().html("<li>"+$inputObj1.val()+"<span class='del'>x</span></li>")
+
+
+            });
+        });
+
+
+
+
+    });
+
+
+
+
+
+    //    document.querySelector("#btn1").addEventListener("click", function (evnet) {
+    //
+    //        console.dir(evnet);
+    //    })
+    //
+    //    $("#btn2").on("click", function (e) {
+    //        console.dir(e)
+    //    })
+
+
+</script>
+<script>
+    $(document).ready(function (e) {
+        $("#btn").on("click", function (e) {
+            console.log("???");
+            $(".listDiv").animate({left:'100px'}).show('slow').animate({left:'1000px'});
+//  .클래스 #id
+        });
+
+
+    });
+</script>
+
+
+</body>
+</html>

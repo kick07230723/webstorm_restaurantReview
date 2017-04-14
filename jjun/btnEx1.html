@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>집에가자아아아아</title>
+</head>
+<body>
+
+<div class="outer">
+    <input type="text" name="inputText">
+    <button id="btn">입력</button>
+</div>
+<div class="inner">
+    <ul class="ULC">
+
+
+    </ul>
+
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+
+        var $inputObj = $("input[name='inputText']");
+        var $btnObj = $("#btn");
+        var $ulObj=$(".ULC");
+        var $outerObj = $(".outer");
+        var $innerObj = $(".inner");
+        var $cancle = $(".canc");
+
+        $btnObj.on("click",function (e) {// 입력버튼 눌러서 댓글달기
+
+            var $content = $inputObj.val();
+            $inputObj.val("");
+            $ulObj.append("<li class = 'liO'>"+$content+"<button class = 'canc'> x </button></li>");
+        });
+
+
+        $ulObj.on("click","li .canc",function(e){//x버튼 눌러서 삭제
+            console.log("이것은 삭제"+this)
+            $(this).parent().remove();
+
+        });
+
+
+        $ulObj.on("click","li",function (e) {//리스트 눌러서 수정하기 위해 인풋창 띄우기
+            console.log("1!!!!!"+$(this).html())//this =<button class = 'canc'> x </button></li>
+            var liText= $(this).text();
+            console.log( "집에가자ㅏㅏㅏㅏ"+$(".inputO").val())
+//            $(".liO").text()
+            $(this).html("<input class='inputO' type='text' value="+ liText+"><button id='mod'>수정</button>");
+
+
+        });
+
+
+
+        $ulObj.on("click","input",function (e){//띄운 인풋창 눌러서 수정
+            e.stopPropagation();        //this.parent=버튼
+            console.log("2222!!!"+$(this).parent().html())//"2222!!!"+$(this).parent().html()=<input><button>
+
+        });
+
+        $ulObj.on("click","button",function (e) {//수정버튼 눌러서 수정한값 저장
+            e.stopPropagation();
+            console.log("333!!!"+$(".inputO").val())
+
+//          $(".inputO").val()= 바꿀값
+            $(this).parent().html("<li class = 'liO'>"+$(".inputO").val()+"<button class = 'canc'> x </button></li>")
+
+        });
+
+    });
+
+//문제점1. 수정하면 텍스트만 삭제되고 흔적이 남는다
+//문제점2. 2번째 수정부턴 원래 있던 댓글을 못 가져온다
+
+
+</script>
+</body>
+</html>
